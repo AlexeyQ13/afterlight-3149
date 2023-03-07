@@ -33,30 +33,40 @@ foreach ($unmerged in $refs) {
 
     if ($summary -ieq "automatic changelog update") {
         Write-Output ("Deliberately skipping changelog bot commit {0}." -f $unmerged)
-        Write-Output "== GIT (CONFLICTS ARE OKAY) =="
-        git merge --no-ff --no-commit --no-verify $unmerged
-        # DELIBERATELY IGNORE merge conflict markers. We're just going to undo the commit!
-        git add *
-        git commit -m ("squash! Merge tool skipping '{0}'" -f $unmerged)
-        $newhead = git log -n 1 --format=format:%H
-        git reset HEAD~ --hard
-        git reset $newhead --soft
-        git commit --amend --no-edit
+        Write-Output "== GIT =="
+        $blanktree = git write-tree # We construct a new tree object.
+        # With the current HEAD and the to-be-included commit as parents, adding it to the repo.
+        $newhead = git commit-tree $blanktree -p HEAD -p $unmerged -m ("squash! Mergebot skipped commit {0}." -f $unmerged)
+        git checkout $newhead -q
         Write-Output "== DONE =="
         continue
     }
 
-    git show --format=full --summary $unmerged
+
 
     $parents = (git log --format=format:%P -n 1 $unmerged) -split '\s+'
-    Write-Output $parents
 
     if ($parents.Length -ne 1) {
         $mergedin = $parents[1..($parents.Length-1)]
-        Write-Output "Which has children (note: Merging again will create a tower of merges, but fully preserves history):"
-        foreach ($tomerge in $mergedin) {
-            git show --format=full --summary $mergedin
+        if (($summary -match ".*Merge tool skipping '[a-f0-9]{40}'$") -or ($summary -match ".*Merge tool skipping [a-f0-9]{40}$")) {
+            Write-Output ("Automatically skipping {0}, as it itself is a skip commit." -f $unmerged)
+            Write-Output "== GIT =="
+            $blanktree = git write-tree # We construct a new tree object.
+            # With the current HEAD and the to-be-included commit as parents, adding it to the repo.
+            $newhead = git commit-tree $blanktree -p HEAD -p $unmerged -m ("squash! Mergebot skipped commit {0}." -f $unmerged)
+            git checkout $newhead -q
+            Write-Output "== DONE =="
+            continue
+        } else {
+            git show --format=full --summary $unmerged
+            Write-Output "Which has children (note: Merging again will create a tower of merges, but fully preserves history):"
+
+            foreach ($tomerge in $mergedin) {
+                git show --format=full --summary $mergedin
+            }
         }
+    } else {
+        git show --format=full --summary $unmerged
     }
 
     $response = $host.UI.PromptForChoice("Commit action?", "", $mergeOptions, 0)
@@ -69,20 +79,16 @@ foreach ($unmerged in $refs) {
         }
         1 {
             Write-Output "== GIT =="
-            git merge --no-ff -m ("squash! Merge tool integrating '{0}'" -f $unmerged) $unmerged
+            git merge --no-ff -m ("squash! Merge tool integrating {0}" -f $unmerged) $unmerged
             Write-Output "== DONE =="
         }
         0 {
             Write-Output ("Skipping {0}" -f $unmerged)
-            Write-Output "== GIT (CONFLICTS ARE OKAY) =="
-            git merge --no-ff --no-commit --no-verify $unmerged
-            # DELIBERATELY IGNORE merge conflict markers. We're just going to undo the commit!
-            git add *
-            git commit -m ("squash! Merge tool skipping '{0}'" -f $unmerged)
-            $newhead = git log -n 1 --format=format:%H
-            git reset HEAD~ --hard
-            git reset $newhead --soft
-            git commit --amend --no-edit
+            Write-Output "== GIT =="
+            $blanktree = git write-tree # We construct a new tree object.
+            # With the current HEAD and the to-be-included commit as parents, adding it to the repo.
+            $newhead = git commit-tree $blanktree -p HEAD -p $unmerged -m ("squash! Mergebot skipped commit {0}." -f $unmerged)
+            git checkout $newhead -q
             Write-Output "== DONE =="
         }
     }
