@@ -2,6 +2,7 @@ name: Build & Test Release
 
 on:
   push:
+<<<<<<< HEAD
     branches: [ master ]
     paths:
       - '**.cs'
@@ -13,18 +14,13 @@ on:
       # why not just do both
       - 'RobustToolbox'
       - 'RobustToolbox/**'
+=======
+    branches: [ master, staging, trying ]
+>>>>>>> b61e529cf11263138142bcdc32ec9b7000126577
   merge_group:
   pull_request:
     types: [ opened, reopened, synchronize, ready_for_review ]
     branches: [ master ]
-    paths:
-      - '**.cs'
-      - '**.csproj'
-      - '**.sln'
-      - '**.git**'
-      - '**.yml'
-      - 'RobustToolbox'
-      - 'RobustToolbox/**'
 
 jobs:
   build:
@@ -70,3 +66,11 @@ jobs:
       run: |
         $env:DOTNET_gcServer=1
         dotnet test --no-build Content.IntegrationTests/Content.IntegrationTests.csproj -- NUnit.ConsoleOut=0
+  ci-success:
+    name: Build & Test Release
+    needs:
+      - build
+    runs-on: ubuntu-latest
+    steps:
+      - name: CI succeeded
+        run: exit 0
