@@ -171,4 +171,5 @@ public sealed class ShipSpawningSystem : BaseWorldSystem
 /// <param name="Location"></param>
 /// <param name="CancelledLocal">Whether to cancel spawning for this specific location.</param>
 /// <param name="CancelledGlobal">Whether to universally prevent spawning.</param>
+[ByRefEvent]
 public record struct TrySpawnShipEvent(string GameMapPrototype, MapCoordinates Location, bool CancelledLocal = false, bool CancelledGlobal = false);
