@@ -36,3 +36,17 @@ public sealed class RadioReceiveAttemptEvent : CancellableEntityEventArgs
         RadioSource = radioSource;
     }
 }
+
+public sealed class RadioSendAttemptEvent : CancellableEntityEventArgs
+{
+    public readonly string Message;
+    public readonly RadioChannelPrototype Channel;
+    public readonly EntityUid? RadioSource;
+
+    public RadioSendAttemptEvent(string message, RadioChannelPrototype channel, EntityUid? radioSource)
+    {
+        Message = message;
+        Channel = channel;
+        RadioSource = radioSource;
+    }
+}

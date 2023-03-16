@@ -69,6 +69,11 @@ public sealed class RadioSystem : EntitySystem
             EntityUid.Invalid);
         var chatMsg = new MsgChatMessage { Message = chat };
 
+        var sendAttemptEv = new RadioSendAttemptEvent(message, channel, radioSource);
+        RaiseLocalEvent(source, sendAttemptEv);
+        if (sendAttemptEv.Cancelled)
+            return;
+
         var ev = new RadioReceiveEvent(message, source, channel, chatMsg, radioSource);
         var attemptEv = new RadioReceiveAttemptEvent(message, source, channel, radioSource);
         var sentAtLeastOnce = false;

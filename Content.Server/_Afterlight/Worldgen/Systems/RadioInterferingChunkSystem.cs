@@ -13,10 +13,10 @@ public sealed class RadioInterferingChunkSystem : BaseWorldSystem
     /// <inheritdoc/>
     public override void Initialize()
     {
-        SubscribeLocalEvent<LowPowerRadioComponent, RadioReceiveAttemptEvent>(OnTryHeadsetTransmit);
+        SubscribeLocalEvent<LowPowerRadioComponent, RadioSendAttemptEvent>(OnTryHeadsetTransmit);
     }
 
-    private void OnTryHeadsetTransmit(EntityUid uid, LowPowerRadioComponent comp, RadioReceiveAttemptEvent ev)
+    private void OnTryHeadsetTransmit(EntityUid uid, LowPowerRadioComponent comp, RadioSendAttemptEvent ev)
     {
         if (ev.RadioSource is null)
             return;

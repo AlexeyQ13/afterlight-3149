@@ -395,7 +395,7 @@ namespace Content.Server.Botany.Systems
             else
             {
                 if (_random.Prob(0.8f))
-                    component.Age += (int) (1 * HydroponicsSpeedMultiplier);
+                    component.Age += 1 * HydroponicsSpeedMultiplier;
 
                 component.UpdateSpriteAfterUpdate = true;
             }
