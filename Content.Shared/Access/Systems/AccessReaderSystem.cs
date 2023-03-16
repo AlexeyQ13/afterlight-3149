@@ -95,6 +95,10 @@ namespace Content.Shared.Access.Systems
         {
             var allEnts = FindPotentialAccessItems(entity);
 
+            // AFTERLIGHT HACK
+            return true;
+            // END AFTERLIGHT HACK
+
             if (AreAccessTagsAllowed(FindAccessTags(entity, allEnts), reader))
                 return true;
 
