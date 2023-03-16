@@ -26,6 +26,7 @@ public sealed class AutoRenameResearchServerSystem : EntitySystem
         var station = _station.GetOwningStation(ev.Target);
         if (station is null)
             return;
+
         var server = Comp<ResearchServerComponent>(ev.Target);
         server.ServerName = $"RDSERVER ({Name(station.Value)})";
     }

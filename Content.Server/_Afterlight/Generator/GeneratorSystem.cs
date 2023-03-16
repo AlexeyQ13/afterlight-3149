@@ -81,14 +81,13 @@ public sealed class GeneratorSystem : SharedGeneratorSystem
         generator.RemainingFuel += stack.Count * component.Multiplier;
         QueueDel(args.Used);
         args.Handled = true;
-        return;
     }
 
     public override void Update(float frameTime)
     {
-        base.Update(frameTime);
+        var query = EntityQueryEnumerator<FuelGeneratorComponent, PowerSupplierComponent, TransformComponent>();
 
-        foreach (var (gen, supplier, xform) in EntityQuery<FuelGeneratorComponent, PowerSupplierComponent, TransformComponent>())
+        while (query.MoveNext(out var uid, out var gen, out var supplier, out var xform))
         {
             supplier.Enabled = !(gen.RemainingFuel <= 0.0f || xform.Anchored == false);
 
@@ -97,15 +96,15 @@ public sealed class GeneratorSystem : SharedGeneratorSystem
             var eff = 1 / CalcFuelEfficiency(gen.TargetPower, gen.OptimalPower);
 
             gen.RemainingFuel = MathF.Max(gen.RemainingFuel - (gen.OptimalBurnRate * frameTime * eff), 0.0f);
-            UpdateUi(gen);
+            UpdateUi(uid, gen);
         }
     }
 
-    private void UpdateUi(FuelGeneratorComponent comp)
+    private void UpdateUi(EntityUid uid, FuelGeneratorComponent comp)
     {
-        if (!_uiSystem.IsUiOpen(comp.Owner, GeneratorComponentUiKey.Key))
+        if (!_uiSystem.IsUiOpen(uid, GeneratorComponentUiKey.Key))
             return;
 
-        _uiSystem.TrySetUiState(comp.Owner, GeneratorComponentUiKey.Key, new SolidFuelGeneratorComponentBuiState(comp));
+        _uiSystem.TrySetUiState(uid, GeneratorComponentUiKey.Key, new SolidFuelGeneratorComponentBuiState(comp));
     }
 }

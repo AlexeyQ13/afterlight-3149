@@ -11,6 +11,7 @@ namespace Content.Server._Afterlight.Worldgen.Systems;
 public sealed class BlueprintPlacerSystem : EntitySystem
 {
     [Dependency] private readonly MapLoaderSystem _mapLoader = default!;
+    [Dependency] private readonly TransformSystem _transform = default!;
     [Dependency] private readonly IComponentFactory _componentFactory = default!;
     [Dependency] private readonly ISerializationManager _serialization = default!;
     /// <inheritdoc/>
@@ -25,7 +26,7 @@ public sealed class BlueprintPlacerSystem : EntitySystem
         var options = new MapLoadOptions()
         {
             LoadMap = false,
-            Offset = xform.WorldPosition,
+            Offset = _transform.GetWorldPosition(uid),
             Rotation = xform.LocalRotation,
         };
 

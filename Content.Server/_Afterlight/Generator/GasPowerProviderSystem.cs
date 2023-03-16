@@ -82,7 +82,5 @@ public sealed class GasPowerProviderSystem : EntitySystem
             var ev = new PowerChangedEvent(state, 0);
             RaiseLocalEvent(uid, ref ev);
         }
-
-        return;
     }
 }

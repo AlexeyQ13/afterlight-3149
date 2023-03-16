@@ -22,8 +22,7 @@ public sealed class RadioInterferingChunkSystem : BaseWorldSystem
             return;
         var xform = Transform(ev.RadioSource.Value);
         var chunk = GetOrCreateChunk(GetChunkCoords(ev.RadioSource.Value, xform), xform.MapUid!.Value);
-        if (TryComp<RadioInterferingChunkComponent>(chunk, out var interference))
+        if (HasComp<RadioInterferingChunkComponent>(chunk))
             ev.Cancel();
-
     }
 }
