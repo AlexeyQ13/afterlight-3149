@@ -18,10 +18,8 @@ public sealed class RadioInterferingChunkSystem : BaseWorldSystem
 
     private void OnTryHeadsetTransmit(EntityUid uid, LowPowerRadioComponent comp, RadioSendAttemptEvent ev)
     {
-        if (ev.RadioSource is null)
-            return;
-        var xform = Transform(ev.RadioSource.Value);
-        var chunk = GetOrCreateChunk(GetChunkCoords(ev.RadioSource.Value, xform), xform.MapUid!.Value);
+        var xform = Transform(uid);
+        var chunk = GetOrCreateChunk(GetChunkCoords(uid, xform), xform.MapUid!.Value);
         if (HasComp<RadioInterferingChunkComponent>(chunk))
             ev.Cancel();
     }

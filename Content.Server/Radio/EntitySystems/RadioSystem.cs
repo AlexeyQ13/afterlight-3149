@@ -70,7 +70,7 @@ public sealed class RadioSystem : EntitySystem
         var chatMsg = new MsgChatMessage { Message = chat };
 
         var sendAttemptEv = new RadioSendAttemptEvent(message, channel, radioSource);
-        RaiseLocalEvent(source, sendAttemptEv);
+        RaiseLocalEvent(radioSource ?? source, sendAttemptEv);
         if (sendAttemptEv.Cancelled)
             return;
 
