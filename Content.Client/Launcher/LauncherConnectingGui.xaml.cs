@@ -25,7 +25,7 @@ namespace Content.Client.Launcher
 
             LayoutContainer.SetAnchorPreset(this, LayoutContainer.LayoutPreset.Wide);
 
-            Stylesheet = IoCManager.Resolve<IStylesheetManager>().SheetSpace;
+            //Stylesheet = IoCManager.Resolve<IStylesheetManager>().SheetSpace; // AFTERLIGHT EDIT
 
             ReconnectButton.OnPressed += _ => _state.RetryConnect();
             // Redial shouldn't fail, but if it does, try a reconnect (maybe we're being run from debug)

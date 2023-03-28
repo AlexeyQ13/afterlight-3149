@@ -87,12 +87,12 @@ namespace Content.Client.Stylesheets
         public static readonly Color DangerousRedFore = Color.FromHex("#BB3232");
         public static readonly Color DisabledFore = Color.FromHex("#5A5A5A");
 
-        public static readonly Color ButtonColorDefault = Color.FromHex("#363230");
+        public static readonly Color ButtonColorDefault = Color.FromHex("#4d4337");
         public static readonly Color ButtonColorDefaultRed = Color.FromHex("#D43B3B");
-        public static readonly Color ButtonColorHovered = Color.FromHex("#4a423b");
+        public static readonly Color ButtonColorHovered = Color.FromHex("#4d3a25");
         public static readonly Color ButtonColorHoveredRed = Color.FromHex("#DF6B6B");
-        public static readonly Color ButtonColorPressed = Color.FromHex("#2d1b00");
-        public static readonly Color ButtonColorDisabled = Color.FromHex("#3b3b3b");
+        public static readonly Color ButtonColorPressed = Color.FromHex("#b37005");
+        public static readonly Color ButtonColorDisabled = Color.FromHex("#332c25");
 
         public static readonly Color ButtonColorCautionDefault = Color.FromHex("#ab3232");
         public static readonly Color ButtonColorCautionHovered = Color.FromHex("#cf2f2f");
@@ -115,9 +115,9 @@ namespace Content.Client.Stylesheets
         public static readonly Color ExamineButtonColorContextDisabled = Color.FromHex("#5A5A5A");
 
         // Fancy Tree elements
-        public static readonly Color FancyTreeEvenRowColor = Color.FromHex("#25252A");
+        public static readonly Color FancyTreeEvenRowColor = Color.FromHex("#2a2825");
         public static readonly Color FancyTreeOddRowColor = FancyTreeEvenRowColor * new Color(0.8f, 0.8f, 0.8f);
-        public static readonly Color FancyTreeSelectedRowColor = new Color(55, 55, 68);
+        public static readonly Color FancyTreeSelectedRowColor = Color.FromHex("#4d3a25");
 
         //Used by the APC and SMES menus
         public const string StyleClassPowerStateNone = "PowerStateNone";
@@ -368,13 +368,13 @@ namespace Content.Client.Stylesheets
 
             var progressBarBackground = new StyleBoxFlat
             {
-                BackgroundColor = new Color(0.25f, 0.25f, 0.25f)
+                BackgroundColor = Color.FromHex("#b37005")
             };
             progressBarBackground.SetContentMarginOverride(StyleBox.Margin.Vertical, 5);
 
             var progressBarForeground = new StyleBoxFlat
             {
-                BackgroundColor = new Color(0.25f, 0.50f, 0.25f)
+                BackgroundColor = Color.FromHex("#22211e")
             };
             progressBarForeground.SetContentMarginOverride(StyleBox.Margin.Vertical, 5);
 
@@ -457,19 +457,19 @@ namespace Content.Client.Stylesheets
             var sliderFillBox = new StyleBoxTexture
             {
                 Texture = sliderFillTex,
-                Modulate = Color.FromHex("#3E6C45")
+                Modulate = Color.FromHex("#b37005"),
             };
 
             var sliderBackBox = new StyleBoxTexture
             {
                 Texture = sliderFillTex,
-                Modulate = Color.FromHex("#1E1E22")
+                Modulate = Color.FromHex("#22211e")
             };
 
             var sliderForeBox = new StyleBoxTexture
             {
                 Texture = sliderOutlineTex,
-                Modulate = Color.FromHex("#494949")
+                Modulate = Color.FromHex("#4d4337")
             };
 
             var sliderGrabBox = new StyleBoxTexture
