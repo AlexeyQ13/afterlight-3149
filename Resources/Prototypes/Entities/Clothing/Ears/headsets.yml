@@ -15,6 +15,7 @@
   - type: Headset
   - type: LowPowerRadio
   - type: EncryptionKeyHolder
+    keySlots: 4
   - type: Sprite
     state: icon
   - type: Clothing
@@ -40,6 +41,7 @@
     containers:
       key_slots:
       - EncryptionKeyCargo
+      - EncryptionKeyCommon
   - type: Sprite
     sprite: Clothing/Ears/Headsets/cargo.rsi
   - type: Clothing
@@ -65,7 +67,9 @@
   - type: ContainerFill
     containers:
       key_slots:
-      - EncryptionKeyQM
+      - EncryptionKeyCargo
+      - EncryptionKeyCommand
+      - EncryptionKeyCommon
 
 - type: entity
   parent: ClothingHeadset
@@ -77,6 +81,7 @@
     containers:
       key_slots:
       - EncryptionKeyCentCom
+      - EncryptionKeyStationMaster
   - type: Sprite
     sprite: Clothing/Ears/Headsets/centcom.rsi
   - type: Clothing
@@ -91,7 +96,7 @@
   - type: ContainerFill
     containers:
       key_slots:
-      - EncryptionKeyCommand
+      - EncryptionKeyStationMaster
   - type: Sprite
     sprite: Clothing/Ears/Headsets/command.rsi
   - type: Clothing
@@ -107,6 +112,7 @@
     containers:
       key_slots:
       - EncryptionKeyEngineering
+      - EncryptionKeyCommon
   - type: Sprite
     sprite: Clothing/Ears/Headsets/engineering.rsi
   - type: Clothing
@@ -121,7 +127,9 @@
   - type: ContainerFill
     containers:
       key_slots:
-      - EncryptionKeyCE
+      - EncryptionKeyEngineering
+      - EncryptionKeyCommand
+      - EncryptionKeyCommon
 
 - type: entity
   parent: ClothingHeadset
@@ -133,6 +141,7 @@
     containers:
       key_slots:
       - EncryptionKeyMedical
+      - EncryptionKeyCommon
   - type: Sprite
     sprite: Clothing/Ears/Headsets/medical.rsi
   - type: Clothing
@@ -148,6 +157,7 @@
     containers:
       key_slots:
       - EncryptionKeyScience
+      - EncryptionKeyCommon
   - type: Sprite
     sprite: Clothing/Ears/Headsets/science.rsi
   - type: Clothing
@@ -163,6 +173,7 @@
     containers:
       key_slots:
       - EncryptionKeyMedicalScience
+      - EncryptionKeyCommon
   - type: Sprite
     sprite: Clothing/Ears/Headsets/medicalscience.rsi
   - type: Clothing
@@ -178,6 +189,7 @@
     containers:
       key_slots:
       - EncryptionKeyRobo
+      - EncryptionKeyCommon
   - type: Sprite
     sprite: Clothing/Ears/Headsets/robotics.rsi
   - type: Clothing
@@ -192,7 +204,9 @@
   - type: ContainerFill
     containers:
       key_slots:
-      - EncryptionKeyRD
+      - EncryptionKeyScience
+      - EncryptionKeyCommand
+      - EncryptionKeyCommon
 
 - type: entity
   parent: ClothingHeadset
@@ -204,6 +218,7 @@
     containers:
       key_slots:
       - EncryptionKeySecurity
+      - EncryptionKeyCommon
   - type: Sprite
     sprite: Clothing/Ears/Headsets/security.rsi
   - type: Clothing
@@ -219,6 +234,7 @@
     containers:
       key_slots:
       - EncryptionKeyService
+      - EncryptionKeyCommon
   - type: Sprite
     sprite: Clothing/Ears/Headsets/service.rsi
   - type: Clothing
