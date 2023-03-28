@@ -368,13 +368,13 @@ namespace Content.Client.Stylesheets
 
             var progressBarBackground = new StyleBoxFlat
             {
-                BackgroundColor = Color.FromHex("#b37005")
+                BackgroundColor = Color.FromHex("#22211e")
             };
             progressBarBackground.SetContentMarginOverride(StyleBox.Margin.Vertical, 5);
 
             var progressBarForeground = new StyleBoxFlat
             {
-                BackgroundColor = Color.FromHex("#22211e")
+                BackgroundColor = Color.FromHex("#b37005")
             };
             progressBarForeground.SetContentMarginOverride(StyleBox.Margin.Vertical, 5);
 
