@@ -28,7 +28,7 @@ namespace Content.Client.Changelog
             IoCManager.InjectDependencies(this);
             RobustXamlLoader.Load(this);
 
-            Stylesheet = IoCManager.Resolve<IStylesheetManager>().SheetSpace;
+            //Stylesheet = IoCManager.Resolve<IStylesheetManager>().SheetSpace; // AFTERLIGHT EDIT
             CloseButton.OnPressed += _ => Close();
         }
 

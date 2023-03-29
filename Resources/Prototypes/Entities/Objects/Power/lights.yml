@@ -84,7 +84,7 @@
   components:
   - type: LightBulb
     bulb: Bulb
-    color: "#FFD1A3" # 4000K color temp
+    color: "#ffd28a" # 4000K color temp # AFTERLIGHT EDIT get amber'd bitch
     lightEnergy: 1.0
     lightRadius: 6
     lightSoftness: 1.1
@@ -96,7 +96,7 @@
   description: A light fixture.
   components:
   - type: LightBulb
-    color: "#FFE4CE" # 5000K color temp
+    color: "#ffd7b8" # 5000K color temp # AFTERLIGHT EDIT this is now slightly orang
     lightEnergy: 0.8
     lightRadius: 10
     lightSoftness: 1

@@ -83,7 +83,7 @@ namespace Content.Client.ParticleAccelerator.UI
             var back = new StyleBoxTexture
             {
                 Texture = panelTex,
-                Modulate = Color.FromHex("#25252A"),
+                Modulate = Color.FromHex("#2a2725"),
             };
             back.SetPatchMargin(StyleBox.Margin.All, 10);
 
@@ -339,7 +339,7 @@ namespace Content.Client.ParticleAccelerator.UI
             return (n >= 0 && n <= 3 && !_blockSpinBox);
         }
 
-        private void PowerStateChanged(object? sender, ValueChangedEventArgs e)
+        private void PowerStateChanged(ValueChangedEventArgs e)
         {
             ParticleAcceleratorPowerState newState;
             switch (e.Value)
