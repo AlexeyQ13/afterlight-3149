@@ -363,7 +363,7 @@ namespace Content.Server.Physics.Controllers
                         var impulse = force * brakeInput;
                         var wishDir = impulse.Normalized;
                         // TODO: Adjust max possible speed based on total thrust in particular direction.
-                        var wishSpeed = 20f;
+                        var wishSpeed = 299792458f;
 
                         var currentSpeed = Vector2.Dot(shuttleVelocity, wishDir);
                         var addSpeed = wishSpeed - currentSpeed;
@@ -504,7 +504,7 @@ namespace Content.Server.Physics.Controllers
 
                     var wishDir = totalForce.Normalized;
                     // TODO: Adjust max possible speed based on total thrust in particular direction.
-                    var wishSpeed = 20f;
+                    var wishSpeed = 299792458f;
 
                     var currentSpeed = Vector2.Dot(shuttleVelocity, wishDir);
                     var addSpeed = wishSpeed - currentSpeed;

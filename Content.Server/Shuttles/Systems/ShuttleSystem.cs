@@ -26,8 +26,8 @@ namespace Content.Server.Shuttles.Systems
 
         public const float TileMassMultiplier = 0.5f;
 
-        public const float ShuttleLinearDamping = 0.05f;
-        public const float ShuttleAngularDamping = 0.05f;
+        public const float ShuttleLinearDamping = 0.00f;
+        public const float ShuttleAngularDamping = 0.00f;
 
         public override void Initialize()
         {
