@@ -1,3 +1,4 @@
+using Content.Server._Alexey;
 using Content.Server.Cargo.Components;
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Systems;
@@ -6,6 +7,7 @@ using Content.Shared.Movement.Systems;
 using Content.Shared.Shuttles.Components;
 using Content.Shared.Shuttles.Systems;
 using Robust.Server.GameObjects;
+using Robust.Shared.Configuration;
 using Robust.Shared.Map;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
@@ -15,6 +17,7 @@ namespace Content.Server.Physics.Controllers
 {
     public sealed class MoverController : SharedMoverController
     {
+        [Dependency] private readonly IConfigurationManager _cfg = default!;
         [Dependency] private readonly IMapManager _mapManager = default!;
         [Dependency] private readonly ThrusterSystem _thruster = default!;
 
@@ -363,7 +366,7 @@ namespace Content.Server.Physics.Controllers
                         var impulse = force * brakeInput;
                         var wishDir = impulse.Normalized;
                         // TODO: Adjust max possible speed based on total thrust in particular direction.
-                        var wishSpeed = 299792458f;
+                        var wishSpeed = _cfg.GetCVar(AlexeyCVars.WishSpeed);
 
                         var currentSpeed = Vector2.Dot(shuttleVelocity, wishDir);
                         var addSpeed = wishSpeed - currentSpeed;
@@ -504,7 +507,7 @@ namespace Content.Server.Physics.Controllers
 
                     var wishDir = totalForce.Normalized;
                     // TODO: Adjust max possible speed based on total thrust in particular direction.
-                    var wishSpeed = 299792458f;
+                    var wishSpeed = _cfg.GetCVar(AlexeyCVars.WishSpeed);
 
                     var currentSpeed = Vector2.Dot(shuttleVelocity, wishDir);
                     var addSpeed = wishSpeed - currentSpeed;
