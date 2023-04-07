@@ -1,4 +1,4 @@
-using Content.Server._Alexey;
+using Content.Server._CleanSector;
 using Content.Server.Cargo.Components;
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Systems;
@@ -366,7 +366,7 @@ namespace Content.Server.Physics.Controllers
                         var impulse = force * brakeInput;
                         var wishDir = impulse.Normalized;
                         // TODO: Adjust max possible speed based on total thrust in particular direction.
-                        var wishSpeed = _cfg.GetCVar(AlexeyCVars.WishSpeed);
+                        var wishSpeed = _cfg.GetCVar(CleanSectorCVars.WishSpeed);
 
                         var currentSpeed = Vector2.Dot(shuttleVelocity, wishDir);
                         var addSpeed = wishSpeed - currentSpeed;
@@ -507,7 +507,7 @@ namespace Content.Server.Physics.Controllers
 
                     var wishDir = totalForce.Normalized;
                     // TODO: Adjust max possible speed based on total thrust in particular direction.
-                    var wishSpeed = _cfg.GetCVar(AlexeyCVars.WishSpeed);
+                    var wishSpeed = _cfg.GetCVar(CleanSectorCVars.WishSpeed);
 
                     var currentSpeed = Vector2.Dot(shuttleVelocity, wishDir);
                     var addSpeed = wishSpeed - currentSpeed;
